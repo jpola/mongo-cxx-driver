@@ -161,14 +161,14 @@ if(BSONCXX_BUILD_STATIC)
     bsoncxx_add_library(bsoncxx_static "${BSONCXX_OUTPUT_BASENAME}-static" STATIC)
 endif()
 
-if(BSONCXX_BUILD_SHARED)
-    set(BSONCXX_LIBRARY_FOR_EXAMPLES "bsoncxx_shared" CACHE INTERNAL "")
-    bsoncxx_add_library(bsoncxx_testing "bsoncxx-testing" SHARED)
-else()
-    set(BSONCXX_LIBRARY_FOR_EXAMPLES "bsoncxx_static" CACHE INTERNAL "")
-    bsoncxx_add_library(bsoncxx_testing "bsoncxx-testing" STATIC)
-endif()
-target_compile_definitions(bsoncxx_testing PUBLIC BSONCXX_TESTING)
+#if(BSONCXX_BUILD_SHARED)
+#    set(BSONCXX_LIBRARY_FOR_EXAMPLES "bsoncxx_shared" CACHE INTERNAL "")
+#    bsoncxx_add_library(bsoncxx_testing "bsoncxx-testing" SHARED)
+#else()
+#    set(BSONCXX_LIBRARY_FOR_EXAMPLES "bsoncxx_static" CACHE INTERNAL "")
+#    bsoncxx_add_library(bsoncxx_testing "bsoncxx-testing" STATIC)
+#endif()
+#target_compile_definitions(bsoncxx_testing PUBLIC BSONCXX_TESTING)
 
 
 install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
@@ -203,7 +203,7 @@ if(BSONCXX_BUILD_STATIC)
 endif()
 bsoncxx_install("${bsoncxx_target_list}" "${bsoncxx_pkg_dep}")
 
-add_subdirectory(test)
+# add_subdirectory(test)
 
 set_local_dist (src_bsoncxx_DIST_local
    CMakeLists.txt
@@ -282,6 +282,6 @@ set (src_bsoncxx_DIST
    ${src_bsoncxx_DIST_local}
    ${src_bsoncxx_config_DIST}
    ${src_bsoncxx_third_party_DIST}
-   ${src_bsoncxx_test_DIST}
+   #${src_bsoncxx_test_DIST}
    PARENT_SCOPE
 )

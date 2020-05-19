@@ -179,15 +179,15 @@ if(MONGOCXX_BUILD_STATIC)
     target_link_libraries(mongocxx_static PUBLIC bsoncxx_static)
 endif()
 
-if(MONGOCXX_BUILD_SHARED)
-    set(MONGOCXX_LIBRARY_FOR_EXAMPLES "mongocxx_shared" CACHE INTERNAL "")
-    mongocxx_add_library(mongocxx_mocked "mongocxx-mocked" SHARED)
-else()
-    set(MONGOCXX_LIBRARY_FOR_EXAMPLES "mongocxx_static" CACHE INTERNAL "")
-    mongocxx_add_library(mongocxx_mocked "mongocxx-mocked" STATIC)
-endif()
-target_link_libraries(mongocxx_mocked PUBLIC bsoncxx_testing)
-target_compile_definitions(mongocxx_mocked PUBLIC MONGOCXX_TESTING)
+#if(MONGOCXX_BUILD_SHARED)
+#    set(MONGOCXX_LIBRARY_FOR_EXAMPLES "mongocxx_shared" CACHE INTERNAL "")
+#    mongocxx_add_library(mongocxx_mocked "mongocxx-mocked" SHARED)
+#else()
+#    set(MONGOCXX_LIBRARY_FOR_EXAMPLES "mongocxx_static" CACHE INTERNAL "")
+#    mongocxx_add_library(mongocxx_mocked "mongocxx-mocked" STATIC)
+#endif()
+#target_link_libraries(mongocxx_mocked PUBLIC bsoncxx_testing)
+#target_compile_definitions(mongocxx_mocked PUBLIC MONGOCXX_TESTING)
 
 if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
     target_compile_options(mongocxx_mocked PRIVATE /bigobj)
@@ -226,7 +226,7 @@ if(MONGOCXX_BUILD_STATIC)
 endif()
 mongocxx_install("${mongocxx_target_list}" "${mongocxx_pkg_dep}")
 
-add_subdirectory(test)
+#add_subdirectory(test)
 
 set_local_dist (src_mongocxx_DIST_local
    CMakeLists.txt
@@ -437,6 +437,6 @@ set_local_dist (src_mongocxx_DIST_local
 set (src_mongocxx_DIST
    ${src_mongocxx_DIST_local}
    ${src_mongocxx_config_DIST}
-   ${src_mongocxx_test_DIST}
+   #${src_mongocxx_test_DIST}
    PARENT_SCOPE
 )
